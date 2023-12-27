@@ -1,47 +1,11 @@
 'use client';
 import Image from 'next/image';
 
-import { SearchResultCard } from '../lib/types';
 import { fetchNamesMovieOfTMBD } from '../lib/data';
 import { getReleaseYear } from '@/app/lib/utils';
 import blurCard from '@/app/lib/blur';
 import { useSelectMovie } from '../hooks/useSelectMovie';
-
-export function CardResultInApi({ id, title, year, poster, overview, onClick }: SearchResultCard) {
-	const handleClick = () => {
-		onClick({
-			id,
-			title,
-			year,
-			overview,
-			poster,
-		});
-	};
-
-	return (
-		<div className='w-full h-[108px] p-1 flex items-center gap-2 bg-white hover:bg-gray-200 cursor-pointer' onClick={handleClick}>
-			<Image
-				width={75}
-				height={100}
-				src={poster}
-				alt={title}
-				className='h-full w-[75px] min-w-[75px] object-cover overflow-hidden rounded-md border-2 border-gray-700'
-				placeholder='blur'
-				blurDataURL={blurCard}
-			/>
-
-			<div className='h-full flex flex-col justify-around text-ellipsis'>
-				<h4 className='font-semibold text-md leading-none'>
-					{title}
-					<span className='text-sm font-semibold text-gray-400'> - {year}</span>
-				</h4>
-				<p className='text-[0.80rem] max-h-[50px] leading-none font-semibold text-gray-600 xxs:line-clamp-2 xs:line-clamp-3 sm:line-clamp-4 md:leading-tight'>
-					{overview}
-				</p>
-			</div>
-		</div>
-	);
-}
+import { CardResultInApi } from './card-result-in-api';
 
 interface MovieSelected {
 	title: string;
@@ -112,17 +76,7 @@ export function ChooseMovieField() {
 			{movies.length > 0 && (
 				<div className='absolute top-[81px] flex flex-col gap-[2px] border-2 w-full bg-gray-700 border-gray-700 rounded-b-md overflow-hidden'>
 					{movies.map((movie) => {
-						return (
-							<CardResultInApi
-								key={movie.id}
-								id={movie.id}
-								title={movie.title}
-								year={getReleaseYear(movie.year)}
-								poster={movie.poster}
-								overview={movie.overview}
-								onClick={choseMovie}
-							/>
-						);
+						return <CardResultInApi key={movie.id} data={movie} onClick={choseMovie} />;
 					})}
 				</div>
 			)}

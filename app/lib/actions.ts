@@ -26,7 +26,7 @@ export async function insertReview(formData: FormData) {
 		await sql`
 		INSERT INTO 
 		movie_reviews (id, title, poster, score, review, author)
-		VALUES (${id}, ${title}, ${poster.toString()}, ${score}, ${review}, ${author})`;
+		VALUES (${id}, ${title}, ${poster.toString()}, ${score}, ${review as string}, ${author})`;
 		revalidatePath('/');
 		redirect('/');
 	} catch (error) {}

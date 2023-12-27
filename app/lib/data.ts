@@ -1,5 +1,5 @@
 import { sql } from '@vercel/postgres';
-import { structuringOfSearchCard, limitResultFetching } from './utils';
+import { structuringOfSearchCard, limitResultFetching, formattingMovieCard } from './utils';
 import { MovieCard } from './types';
 import { revalidatePath } from 'next/cache';
 
@@ -24,7 +24,18 @@ export async function fetchAllReview(): Promise<MovieCard[]> {
 	revalidatePath('/');
 	try {
 		const request = await sql`SELECT * FROM movie_reviews`;
-		return request.rows;
+		const formatting = request.rows;
+		return formatting.map((movie) => {
+			const format = {
+				id: movie.id,
+				title: movie.title,
+				poster: movie.poster,
+				score: movie.score,
+				review: movie.review,
+				author: movie.author,
+			};
+			return formattingMovieCard(format);
+		});
 	} catch (error) {
 		throw new Error();
 	}

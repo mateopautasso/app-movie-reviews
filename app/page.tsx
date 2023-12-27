@@ -1,5 +1,3 @@
-import { placeholderMovieCard } from './lib/placeholder-data';
-import SectionTitle from './ui/section-title';
 import CardPreview from './ui/preview/card-preview';
 import CardTitle from './ui/card-title';
 import CardImagePreview from './ui/preview/card-image-preview';
@@ -7,7 +5,6 @@ import CardStars from './ui/card-stars';
 import CardAuthor from './ui/card-author';
 import { LinkButton } from './ui/buttons';
 import { fetchAllReview } from './lib/data';
-import { formattingMovieCard } from './lib/utils';
 
 export default async function Home() {
 	const allMovies = await fetchAllReview();
@@ -17,15 +14,14 @@ export default async function Home() {
 			<section className='w-full h-full flex justify-center flex-wrap gap-8'>
 				{allMovies.length > 0 ? (
 					allMovies.map((movie): React.ReactElement => {
-						const data = formattingMovieCard(movie);
 						return (
-							<CardPreview key={data.id}>
-								<CardTitle text={data.title} />
-								<CardImagePreview src={data.poster} alt={data.title} />
+							<CardPreview key={movie.id}>
+								<CardTitle text={movie.title} />
+								<CardImagePreview src={movie.poster} alt={movie.title} />
 								<div className='w-full flex flex-col gap-1'>
-									<CardStars score={data.score} />
-									<CardAuthor text={data.author} />
-									<LinkButton text='Ver reseña' href={`/movie/${data.id}`} />
+									<CardStars score={movie.score} />
+									<CardAuthor text={movie.author} />
+									<LinkButton text='Ver reseña' href={`/movie/${movie.id}`} />
 								</div>
 							</CardPreview>
 						);

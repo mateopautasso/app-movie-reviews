@@ -4,7 +4,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 import Navbar from './ui/navbar/navbar';
-import NavbarItem from './ui/navbar/navbar-item';
+import SectionTitle from './ui/section-title';
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -15,10 +15,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang='en'>
 			<body className={`${inter.className} bg-gray-100 min-h-screen px-4 py-8 lg:p-8`}>
-				<Navbar>
-					<NavbarItem text='Ver todas las reseñas' href='/' />
-					<NavbarItem text='Subir nueva reseña' href='/movie/addmovie' />
-				</Navbar>
+				<SectionTitle text='App de reseñas' />
+				<Navbar />
 				{children}
 			</body>
 		</html>

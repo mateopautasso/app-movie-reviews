@@ -1,13 +1,23 @@
-function CardReviewReview({ text }: { text: string }) {
+import { MovieCardContent } from '@/app/lib/types';
+
+function SectionReview({ title, content }: { title: String; content: String }) {
 	return (
-		<p className='text-lg font-medium text-gray-600 text-start w-full' style={{ textWrap: 'pretty' }}>
-			{text}
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, a enim amet quasi nemo harum sint nisi magnam
-			dolorem labore magni repellendus tenetur corrupti architecto iusto cupiditate, dicta, perspiciatis similique!
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quisquam omnis maxime inventore itaque
-			cumque assumenda earum possimus, amet reiciendis! Velit voluptatem soluta voluptatibus totam amet perspiciatis et
-			beatae veniam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non molestiae suscipit illum at.
-		</p>
+		<div className='w-full'>
+			<h5 className='w-full text-lg text-start font-bold'>{title}</h5>
+			<p className='text-base text-gray-800 text-start w-full' style={{ textWrap: 'pretty' }}>
+				{content}
+			</p>
+		</div>
+	);
+}
+
+function CardReviewReview({ sections }: { sections: MovieCardContent[] }) {
+	return (
+		<div className='w-full flex flex-col gap-4 my-2'>
+			{sections.map((section, index) => (
+				<SectionReview key={index} title={section.title} content={section.content} />
+			))}
+		</div>
 	);
 }
 export default CardReviewReview;

@@ -9,8 +9,8 @@ const determineScore = (score: number) => {
 
 function CardStars({ score }: { score: number }) {
 	return (
-		<h4 className='text-xl font-bold display flex justify-start items-center'>
-			Puntuación:&nbsp;<p className='text-lg inline'>{determineScore(score)}.</p>
+		<h4 className='text-2xl font-semibold display flex justify-start items-center'>
+			Puntuación:&nbsp;<p className='text-lg inline'>{determineScore(score)}</p>
 		</h4>
 	);
 }

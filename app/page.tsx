@@ -5,24 +5,34 @@ import CardTitle from './ui/card-title';
 import CardImagePreview from './ui/preview/card-image-preview';
 import CardStars from './ui/card-stars';
 import CardAuthor from './ui/card-author';
-import CardButton from './ui/card-button';
+import { LinkButton } from './ui/buttons';
+import { fetchAllReview } from './lib/data';
+import { formattingMovieCard } from './lib/utils';
 
-export default function Home() {
+export default async function Home() {
+	const allMovies = await fetchAllReview();
+
 	return (
 		<main className='flex flex-col items-center'>
-			<SectionTitle text='Lista de reseñas' />
 			<section className='w-full h-full flex justify-center flex-wrap gap-8'>
-				<CardPreview>
-					<CardTitle text={placeholderMovieCard.title} />
-					<div className='flex flex-col gap-4 flex-grow h-full'>
-						<CardImagePreview src={placeholderMovieCard.src} alt={placeholderMovieCard.title} />
-						<CardStars score={placeholderMovieCard.score} />
-						<div className='w-full flex flex-col gap-1'>
-							<CardAuthor text={placeholderMovieCard.author} />
-							<CardButton text='Ver reseña' href='#' />
-						</div>
-					</div>
-				</CardPreview>
+				{allMovies.length > 0 ? (
+					allMovies.map((movie): React.ReactElement => {
+						const data = formattingMovieCard(movie);
+						return (
+							<CardPreview key={data.id}>
+								<CardTitle text={data.title} />
+								<CardImagePreview src={data.poster} alt={data.title} />
+								<div className='w-full flex flex-col gap-1'>
+									<CardStars score={data.score} />
+									<CardAuthor text={data.author} />
+									<LinkButton text='Ver reseña' href={`/movie/${data.id}`} />
+								</div>
+							</CardPreview>
+						);
+					})
+				) : (
+					<h5 className='text-3xl text-center'>Todavía no hay reseñas en nuestra base de datos.</h5>
+				)}
 			</section>
 		</main>
 	);

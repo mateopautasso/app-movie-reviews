@@ -29,14 +29,13 @@ export function getReleaseYear(date: string) {
 }
 
 export function formattingMovieCard(object: MovieCard): MovieCard {
-	const card = object;
-	const { id, title, poster, score, review, author } = card;
+	const { id, title, poster, score, review, author } = object;
 	return {
 		id,
 		title,
 		poster: poster.toString(),
 		score,
-		review: JSON.parse(review),
+		review: JSON.parse(review as string),
 		author,
 	};
 }

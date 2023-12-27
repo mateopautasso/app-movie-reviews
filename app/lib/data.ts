@@ -44,14 +44,15 @@ export async function fetchReviewById(id: string) {
 	try {
 		const request = await sql`SELECT * FROM movie_reviews WHERE id = ${id}`;
 		const response = request.rows[0];
-		return {
+		const format = formattingMovieCard({
 			id: response.id,
 			title: response.title,
 			poster: response.poster,
 			score: response.score,
 			review: response.review,
 			author: response.author,
-		};
+		});
+		return format;
 	} catch (error) {
 		throw new Error();
 	}

@@ -38,12 +38,14 @@ export interface MovieCardContent {
 	content: string;
 }
 
+export type Review = string | MovieCardContent[];
+
 export interface MovieCard {
 	id: UUID;
 	title: string;
 	year?: string;
 	poster: string;
 	score: number;
-	review: string;
+	review: Review;
 	author: string;
 }

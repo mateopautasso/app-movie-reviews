@@ -3,10 +3,18 @@ import { ActionButton } from '../buttons';
 import { ChooseMovieField } from '../search-cards';
 import FormLabel from './label';
 import ReviewField from './review-field-container';
+import { v4 as uuidv4 } from 'uuid';
+import { UUID } from 'crypto';
 
 function Form() {
+	const id = uuidv4() as UUID;
+	const insertReviewWithId = insertReview.bind(null, id);
+
 	return (
-		<form action={insertReview} className='w-full p-6 flex flex-col h-auto rounded-md bg-gray-50 border border-gray-300 gap-6 shadow-lg'>
+		<form
+			action={insertReviewWithId}
+			className='w-full p-6 flex flex-col h-auto rounded-md bg-gray-50 border border-gray-300 gap-6 shadow-lg'
+		>
 			<div className='flex flex-col relative'>
 				<FormLabel text='Título de la película' htmlFor='select-movie' />
 				<ChooseMovieField />

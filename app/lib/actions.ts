@@ -8,19 +8,19 @@ import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import blurCard from './blur';
 
-export async function insertReview(formData: FormData) {
+export async function insertReview(id: UUID, formData: FormData) {
 	const titlesReview = formData.getAll('title-section') as string[];
 	const contentReview = formData.getAll('content-section') as string[];
 
 	const data: MovieCard = {
-		id: uuidv4() as UUID,
+		id,
 		title: (formData.get('title') as string) || '(No se encontró el título)',
 		poster: (formData.get('poster') as string) || blurCard,
 		review: JSON.stringify(createReviewFormat(titlesReview, contentReview)),
 		score: Number(formData.get('score')),
 		author: formData.get('author') as string,
 	};
-	const { id, title, poster, review, score, author } = data;
+	const { title, poster, review, score, author } = data;
 
 	try {
 		await sql`
@@ -29,5 +29,9 @@ export async function insertReview(formData: FormData) {
 		VALUES (${id}, ${title}, ${poster.toString()}, ${score}, ${review as string}, ${author})`;
 		revalidatePath('/');
 		redirect('/');
-	} catch (error) {}
+	} catch (error) {
+	} finally {
+		revalidatePath('/');
+		redirect('/');
+	}
 }

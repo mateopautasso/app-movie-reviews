@@ -27,7 +27,9 @@ export default async function Home() {
 						);
 					})
 				) : (
-					<h5 className='text-3xl text-center'>Todavía no hay reseñas en nuestra base de datos.</h5>
+					<h5 className='text-3xl text-center sticky top-0 h-screen flex justify-center items-center title-page'>
+						Todavía no hay reseñas en nuestra base de datos.
+					</h5>
 				)}
 			</section>
 		</main>

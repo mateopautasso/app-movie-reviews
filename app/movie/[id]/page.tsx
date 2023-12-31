@@ -22,7 +22,7 @@ async function MoviePage({ params }: { params: { id: string } }) {
 					<div className='flex flex-col gap-2 w-full'>
 						<CardStars score={data.score} />
 						<div>
-							<h4 className='text-2xl font-bold'>Reseña:</h4>
+							<h4 className='text-2xl font-semibold'>Reseña:</h4>
 							<CardReviewReview sections={data.review as MovieCardContent[]} />
 						</div>
 					</div>

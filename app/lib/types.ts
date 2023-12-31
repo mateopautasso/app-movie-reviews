@@ -49,3 +49,17 @@ export interface MovieCard {
 	review: Review;
 	author: string;
 }
+
+export enum TYPES_ERRORS_FORM_ADD_MOVIE {
+	FIELD_TITLE = 'title',
+	FIELD_REVIEW = 'review',
+	FIELD_AUTHOR = 'author',
+	DATABASE = 'database',
+	SUCCESS = 'success',
+}
+
+export type ReturnStateForm = {
+	id?: UUID;
+	type: TYPES_ERRORS_FORM_ADD_MOVIE | null;
+	message: string | null;
+};

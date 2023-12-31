@@ -52,7 +52,6 @@ export function ChooseMovieField() {
 				name='select-movie'
 				placeholder='Titanic, Jurassic Park, etc.'
 				onChange={handleFetching}
-				required
 			/>
 			<input
 				className='hidden'
@@ -61,7 +60,7 @@ export function ChooseMovieField() {
 				id='title'
 				readOnly
 				value={inputMovieSelected ? inputMovieSelected.title : ''}
-				required
+				aria-describedby='error-input-choose-movie'
 			/>
 			<input
 				className='hidden'
@@ -70,7 +69,6 @@ export function ChooseMovieField() {
 				id='poster'
 				readOnly
 				value={inputMovieSelected ? inputMovieSelected.poster : ''}
-				required
 			/>
 
 			{movies.length > 0 && (

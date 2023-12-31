@@ -1,7 +1,8 @@
-import { MovieCardContent, SearchResultCard, ResponseTMDBStructure, basePathImageTMDB, MovieCard } from './types';
+import { MovieCardContent, SearchResultCard, ResponseTMDBStructure, MovieCard } from './types';
 
 export function createReviewFormat(titles: string[], content: string[]): MovieCardContent[] {
 	let review: MovieCardContent[] = [];
+
 	for (let i = 0; i < titles.length; i++) {
 		review = [...review, { title: titles[i] as string, content: content[i] as string }];
 	}

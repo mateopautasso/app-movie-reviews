@@ -32,7 +32,6 @@ export async function insertReview(state: ReturnStateForm, formData: FormData): 
 			message: 'Por favor ingrese el título y el contenido de la reseña.',
 		};
 	} else if (!author) {
-		console.log(contentReview);
 		return {
 			type: TYPES_ERRORS.FIELD_AUTHOR,
 			message: 'Por favor ingrese un autor.',

@@ -11,6 +11,7 @@ function ReviewField({ id, onClick }: { id: number; onClick: (id: number) => voi
 					id='title-section'
 					className='p-2 bg-transparent border-2 border-gray-400 rounded-md'
 					placeholder='Aparición del T-Rex'
+					aria-describedby='error-input-review'
 				/>
 			</div>
 			<div className='flex flex-col'>
@@ -23,6 +24,7 @@ function ReviewField({ id, onClick }: { id: number; onClick: (id: number) => voi
 					name='content-section'
 					placeholder='Me encanto la parte en la que el T-Rex se comió a Jack...'
 					rows={10}
+					aria-describedby='error-input-review'
 				/>
 			</div>
 

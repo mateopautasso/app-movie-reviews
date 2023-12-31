@@ -6,6 +6,7 @@ function AuthorField() {
 			id='author'
 			name='author'
 			placeholder='Mateo Pautasso'
+			aria-describedby='error-input-author'
 		/>
 	);
 }

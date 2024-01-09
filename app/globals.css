@@ -19,11 +19,11 @@ body {
 
 .card-preview {
 	animation-name: reveal;
-	animation-timing-function: linear;
+	animation-timing-function: ease-in-out;
 	animation-fill-mode: both;
 	animation-duration: auto;
 	animation-timeline: view();
-	animation-range: entry 10% cover 20%;
+	animation-range: entry 20% cover 30%;
 }
 
 @keyframes reveal {

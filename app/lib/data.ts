@@ -20,39 +20,32 @@ export async function fetchNamesMovieOfTMBD(name: string) {
 	return structuringOfSearchCard(limitResult);
 }
 
-export async function fetchAllReview(): Promise<MovieCard[]> {
-	revalidatePath('/');
+export async function getAllReview(): Promise<MovieCard[]> {
 	try {
 		const request = await sql`SELECT * FROM movie_reviews`;
 		const formatting = request.rows;
-		return formatting.map((movie) => {
-			const format = {
-				id: movie.id,
-				title: movie.title,
-				poster: movie.poster,
-				score: movie.score,
-				review: movie.review,
-				author: movie.author,
-			};
-			return formattingMovieCard(format);
-		});
+		return formatting.map((movie) => formattingMovieCard(movie));
 	} catch (error) {
 		throw new Error();
 	}
 }
-export async function fetchReviewById(id: string) {
+
+export async function getReviewById(id: string) {
 	try {
 		const request = await sql`SELECT * FROM movie_reviews WHERE id = ${id}`;
 		const response = request.rows[0];
-		const format = formattingMovieCard({
-			id: response.id,
-			title: response.title,
-			poster: response.poster,
-			score: response.score,
-			review: response.review,
-			author: response.author,
-		});
+		const format = formattingMovieCard(response);
 		return format;
+	} catch (error) {
+		throw new Error();
+	}
+}
+
+export async function getReviewsByName(name: string) {
+	try {
+		const request = await sql`SELECT * FROM movie_reviews WHERE title LIKE '${name}'`;
+		const response = request.rows;
+		return response.map((movie) => formattingMovieCard(movie));
 	} catch (error) {
 		throw new Error();
 	}

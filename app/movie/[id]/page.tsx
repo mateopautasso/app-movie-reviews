@@ -5,14 +5,12 @@ import CardStars from '@/app/ui/card-stars';
 import CardReviewReview from '@/app/ui/review/card-review-review';
 import CardAuthor from '@/app/ui/card-author';
 import { LinkButton } from '@/app/ui/buttons';
-import { fetchReviewById } from '@/app/lib/data';
+import { getReviewById } from '@/app/lib/data';
 import { MovieCardContent } from '@/app/lib/types';
 
 async function MoviePage({ params }: { params: { id: string } }) {
 	const id = params.id;
-	const data = await fetchReviewById(id);
-	console.log(data);
-
+	const data = await getReviewById(id);
 	return (
 		<main className='flex flex-col items-center'>
 			<CardReview>

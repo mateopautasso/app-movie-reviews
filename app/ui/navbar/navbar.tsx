@@ -1,15 +1,23 @@
 'use client';
 import NavbarItem from './navbar-item';
-import { Routes } from '@/app/lib/types';
 import { usePathname } from 'next/navigation';
+import Logo from './logo';
 
 function Navbar() {
 	const path = usePathname();
+
 	return (
-		<header className='w-full flex flex-col my-3 px-2'>
-			<ul className='flex justify-between w-full gap-2 items-center'>
-				<NavbarItem text='Ver reseñas' href='/' />
-				<NavbarItem text='Subir reseña' href='/movie/addmovie' />
+		<header className='w-full flex justify-between my-3 px-2 h-24'>
+			<Logo />
+			<ul className='flex justify-between gap-2 items-center pt-2'>
+				{path === '/' && <NavbarItem text='Subir' href='/movie/addmovie' />}
+				{path === '/movie/addmovie' && <NavbarItem text='Ver' href='/' />}
+				{path !== '/' && path !== '/movie/addmovie' ? (
+					<>
+						<NavbarItem text='Ver' href='/' />
+						<NavbarItem text='Subir' href='/movie/addmovie' />
+					</>
+				) : null}
 			</ul>
 		</header>
 	);

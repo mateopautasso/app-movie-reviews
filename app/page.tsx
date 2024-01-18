@@ -4,10 +4,10 @@ import CardImagePreview from './ui/preview/card-image-preview';
 import CardStars from './ui/card-stars';
 import CardAuthor from './ui/card-author';
 import { LinkButton } from './ui/buttons';
-import { fetchAllReview } from './lib/data';
+import { getAllReview } from './lib/data';
 
 export default async function Home() {
-	const allMovies = await fetchAllReview();
+	const allMovies = await getAllReview();
 
 	return (
 		<main className='flex flex-col items-center'>

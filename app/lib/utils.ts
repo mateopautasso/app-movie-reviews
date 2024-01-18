@@ -29,7 +29,7 @@ export function getReleaseYear(date: string) {
 	return date.split('').slice(0, 4).join('');
 }
 
-export function formattingMovieCard(object: MovieCard): MovieCard {
+export function formattingMovieCard(object: any): MovieCard {
 	const { id, title, poster, score, review, author } = object;
 	return {
 		id,
